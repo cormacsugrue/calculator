@@ -1,3 +1,10 @@
+let firstArg = null;
+let secondArg = null;
+let operator = null;
+
+
+
+
 function add(a,b) {
     return a + b;
 }
