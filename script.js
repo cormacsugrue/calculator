@@ -1,6 +1,17 @@
 let firstNum = null;
 let secondNum = null;
 let operator = null;
+const display = document.querySelector('#calculator-display');
+const numericButtons = document.querySelectorAll('.numeric-button');
+
+numericButtons.forEach((button) => {
+    button.addEventListener('click', numericButtonClick);
+})
+
+function numericButtonClick(e) {
+    // console.log(e.target.innerText);
+    display.innerHTML = e.target.innerHTML;
+}
 
 
 function operate(firstNum, secondNum, operator) {

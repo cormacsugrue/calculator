@@ -30,6 +30,7 @@ body {
     margin: 100px auto;
     border: 1px solid grey;
 
+
 }
 
 #clear-btn {    
@@ -53,9 +54,6 @@ body {
     
 }
 
-#operator-button-container button {
-    
-}
 
 #calculator-display {
     font-size: 50px;
