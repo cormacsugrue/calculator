@@ -9,8 +9,16 @@ numericButtons.forEach((button) => {
 })
 
 function numericButtonClick(e) {
-    // console.log(e.target.innerText);
-    display.innerHTML = e.target.innerHTML;
+    
+    if (display.innerHTML.toString() !== '0') {
+        console.log('here!')
+        updateDisplay(display.innerHTML.concat(e.target.innerHTML));
+    } 
+    else updateDisplay(e.target.innerHTML);
+}
+
+function updateDisplay(newDisplayValue) {
+    display.innerHTML = newDisplayValue;
 }
 
 
