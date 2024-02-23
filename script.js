@@ -32,6 +32,7 @@ function equalsButtonClick() {
     }
     updateDisplay(currentResult);
     firstNum = currentResult;
+    secondNum = null;
 }
 
 function clearButtonClick() {
@@ -44,7 +45,11 @@ function clearButtonClick() {
 }
 
 function operatorButtonClick(e) {
-    
+    if (secondNum !== null) {
+        currentResult = operate(firstNum, secondNum, operator);
+        updateDisplay(currentResult);
+        secondNum = null;
+    }
 
     operator = e.target.innerHTML;
     firstNum = display.innerHTML;
@@ -64,6 +69,8 @@ function numericButtonClick(e) {
         } 
         else updateDisplay(e.target.innerHTML);
     }
+
+
     // First numeric button clicked after operator selected
     else if (secondNum === null) {
         secondNum = e.target.innerHTML;
