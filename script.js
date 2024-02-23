@@ -22,8 +22,6 @@ equalsButton.addEventListener('click', equalsButtonClick);
 clearButton.addEventListener('click', clearButtonClick);
 
 function equalsButtonClick() {
-    // --- THe below logig will occur when equal is selected
-    secondNum = display.innerHTML;
     currentResult = operate(firstNum, secondNum, operator);
     updateDisplay(currentResult);
     firstNum = currentResult;
@@ -39,8 +37,14 @@ function clearButtonClick() {
 }
 
 function operatorButtonClick(e) {
+    
+
     operator = e.target.innerHTML;
     firstNum = display.innerHTML;
+
+    if (currentResult !== null) secondNum = null;
+
+    // else
 
     
     console.log(operator);
