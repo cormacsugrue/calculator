@@ -37,11 +37,25 @@ function operatorButtonClick(e) {
 
 
 function numericButtonClick(e) {
-    if (display.innerHTML.toString() !== '0') {
-        console.log('here!')
-        updateDisplay(display.innerHTML.concat(e.target.innerHTML));
+    // Numeric button click without operator selected
+    if (operator === null) {
+        if (display.innerHTML.toString() !== '0') {
+            // console.log('here!')
+            updateDisplay(display.innerHTML.concat(e.target.innerHTML));
+        } 
+        else updateDisplay(e.target.innerHTML);
+    }
+    // First numeric button clicked after operator selected
+    else if (secondNum === null) {
+        secondNum = e.target.innerHTML;
+        updateDisplay(secondNum);
+        
+    }    
+    // Subsequent numberic button clicked after operator selected
+    else {
+        secondNum = display.innerHTML.concat(e.target.innerHTML);
+        updateDisplay(secondNum);
     } 
-    else updateDisplay(e.target.innerHTML);
 }
 
 function updateDisplay(newDisplayValue) {
