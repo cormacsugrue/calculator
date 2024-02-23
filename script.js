@@ -7,6 +7,7 @@ const display = document.querySelector('#calculator-display');
 const numericButtons = document.querySelectorAll('.numeric-button');
 const equalsButton = document.querySelector('#equals-button');
 const operatorButtons = document.querySelectorAll('.operator-button')
+const clearButton = document.querySelector('#clear-button');
 
 numericButtons.forEach((button) => {
     button.addEventListener('click', numericButtonClick);
@@ -18,12 +19,22 @@ operatorButtons.forEach((button) => {
 
 equalsButton.addEventListener('click', equalsButtonClick);
 
+clearButton.addEventListener('click', clearButtonClick);
+
 function equalsButtonClick() {
     // --- THe below logig will occur when equal is selected
     secondNum = display.innerHTML;
     currentResult = operate(firstNum, secondNum, operator);
     updateDisplay(currentResult);
     firstNum = currentResult;
+}
+
+function clearButtonClick() {
+    firstNum = 0;
+    secondNum = null;
+    operator = null;
+
+    updateDisplay(firstNum);
 
 }
 
