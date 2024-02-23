@@ -22,7 +22,14 @@ equalsButton.addEventListener('click', equalsButtonClick);
 clearButton.addEventListener('click', clearButtonClick);
 
 function equalsButtonClick() {
-    currentResult = operate(firstNum, secondNum, operator);
+    if (secondNum === null){
+        currentResult = operate(firstNum, firstNum, operator);
+        secondNum = firstNum;
+        
+    }
+    else {
+        currentResult = operate(firstNum, secondNum, operator);
+    }
     updateDisplay(currentResult);
     firstNum = currentResult;
 }
@@ -41,10 +48,7 @@ function operatorButtonClick(e) {
 
     operator = e.target.innerHTML;
     firstNum = display.innerHTML;
-
-    if (currentResult !== null) secondNum = null;
-
-    // else
+    
 
     
     console.log(operator);
