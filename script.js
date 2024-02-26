@@ -22,7 +22,11 @@ equalsButton.addEventListener('click', equalsButtonClick);
 clearButton.addEventListener('click', clearButtonClick);
 
 function equalsButtonClick() {
-    if (secondNum === null){
+    // Check if operatior has been selected
+    if (operator === null) {
+        currentResult = display.innerHTML;
+    }
+    else if (secondNum === null){
         currentResult = operate(firstNum, firstNum, operator);
         secondNum = firstNum;
         
