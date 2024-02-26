@@ -32,7 +32,6 @@ function equalsButtonClick() {
     }
     updateDisplay(currentResult);
     firstNum = currentResult;
-    secondNum = null;
 }
 
 function clearButtonClick() {
@@ -90,23 +89,27 @@ function updateDisplay(newDisplayValue) {
 
 
 function operate(firstNum, secondNum, operator) {
+    let result;
+
     switch (operator) {
         case '+':
-            return add(firstNum, secondNum);
+            result = add(firstNum, secondNum);
             break;
         case '-':
-            return subtract(firstNum, secondNum);
+            result = subtract(firstNum, secondNum);
             break;
         case '*':
-            return multiply(firstNum, secondNum);
+            result = multiply(firstNum, secondNum);
             break;
         case '/':
-            return divide(firstNum, secondNum);
+            result = divide(firstNum, secondNum);
             break;
     
         case null:
             console.log('The operator is null');
     }
+
+    return Math.round(result * 10000000) / 10000000;
 }
 
 function add(a,b) {
