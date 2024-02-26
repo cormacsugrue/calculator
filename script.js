@@ -60,8 +60,13 @@ function operatorButtonClick(e) {
 
 
 function numericButtonClick(e) {
+   
     // Numeric button click without operator selected
     if (operator === null) {
+         // Check the length of the display 
+        if (display.innerHTML.length === 9) {
+            return;
+        }
         if (display.innerHTML.toString() !== '0') {
             // console.log('here!')
             updateDisplay(display.innerHTML.concat(e.target.innerHTML));
@@ -76,7 +81,11 @@ function numericButtonClick(e) {
         updateDisplay(secondNum);
         
     }    
-    // Subsequent numberic button clicked after operator selected
+    // Check the length of the display 
+    else if (display.innerHTML.length === 9) {
+        return;
+    }
+    // Subsequent numeric button clicked after operator selected
     else {
         secondNum = display.innerHTML.concat(e.target.innerHTML);
         updateDisplay(secondNum);
