@@ -2,6 +2,8 @@ let firstNum = 0;
 let secondNum = null;
 let operator = null;
 let currentResult = null;
+let hasDecimal = false;
+
 
 const display = document.querySelector('#calculator-display');
 const numericButtons = document.querySelectorAll('.numeric-button');
@@ -36,12 +38,14 @@ function equalsButtonClick() {
     }
     updateDisplay(currentResult);
     firstNum = currentResult;
+    hasDecimal = false;
 }
 
 function clearButtonClick() {
     firstNum = 0;
     secondNum = null;
     operator = null;
+    hasDecimal = false;
 
     updateDisplay(firstNum);
 
@@ -56,6 +60,7 @@ function operatorButtonClick(e) {
 
     operator = e.target.innerHTML;
     firstNum = display.innerHTML;
+    hasDecimal = false;
     
 
     
@@ -64,24 +69,41 @@ function operatorButtonClick(e) {
 
 
 function numericButtonClick(e) {
-   
+    if (e.target.innerHTML === '.') {
+        if (hasDecimal === true) {
+            return;
+        }
+        else {
+            hasDecimal = true;
+        }
+    }
     // Numeric button click without operator selected
     if (operator === null) {
          // Check the length of the display 
         if (display.innerHTML.length === 9) {
             return;
         }
+        // case where display is showing zero
         if (display.innerHTML.toString() !== '0') {
             // console.log('here!')
             updateDisplay(display.innerHTML.concat(e.target.innerHTML));
         } 
+        // case where button selected is decimal when display is zero
+        else if (e.target.innerHTML === '.') {
+            updateDisplay('0.');
+        }
         else updateDisplay(e.target.innerHTML);
     }
 
 
     // First numeric button clicked after operator selected
     else if (secondNum === null) {
-        secondNum = e.target.innerHTML;
+        if (e.target.innerHTML === ".") {
+            secondNum = '0.'
+        }
+        else {
+            secondNum = e.target.innerHTML;
+        }
         updateDisplay(secondNum);
         
     }    
