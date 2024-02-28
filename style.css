@@ -34,8 +34,11 @@ body {
 }
 
 #clear-button {    
-
     background-color: rgb(26, 135, 199);
+}
+
+#clear-button:active {    
+    background-color: rgb(58, 166, 228);
 }
 
 #zero-btn {
@@ -44,6 +47,10 @@ body {
 
 .numeric-button {
     background-color: rgb(138, 203, 136) ;
+}
+
+.numeric-button:active {
+    background-color: rgb(175, 230, 173) ;
 }
 
 .operator-button {
@@ -64,13 +71,17 @@ body {
 
 #operator-button-container > button {
     background-color: rgb(222, 107, 72);
+    /* background-color: rgb(226, 143, 118); */
 
 }
-
 
 #calculator-display {
     font-size: 50px;
     text-align: right;
     border: 1px solid rgb(20, 20, 20);
     background-color: rgb(255, 235, 231);
+}
+
+#equals-button:active {
+    background-color: rgb(226, 143, 118);
 }

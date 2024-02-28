@@ -14,11 +14,22 @@ const clearButton = document.querySelector('#clear-button');
 
 numericButtons.forEach((button) => {
     button.addEventListener('click', numericButtonClick);
+   
 })
 
 operatorButtons.forEach((button) => {
     button.addEventListener('click', operatorButtonClick);
+    button.addEventListener('click', () => {
+        button.style.backgroundColor = "rgb(226, 143, 118)"
+    });
+    
 })
+
+function operatorButtonColorRevert() {
+    operatorButtons.forEach((button) => {
+        button.style.backgroundColor = "rgb(222, 107, 72)";
+    })
+}
 
 equalsButton.addEventListener('click', equalsButtonClick);
 
@@ -67,10 +78,11 @@ function initialize() {
     currentResult = null;
     equalsButtonFlagSet = false;
     updateDisplay(firstNum);
-
+    operatorButtonColorRevert();
 }
 
 function operatorButtonClick(e) {
+    operatorButtonColorRevert();
     if (secondNum !== null) {
         currentResult = operate(firstNum, secondNum, operator);
         updateDisplay(currentResult);
@@ -81,15 +93,11 @@ function operatorButtonClick(e) {
     firstNum = display.innerHTML;
     hasDecimal = false;
     equalsButtonFlagSet = false;
-    
-
-    
-    console.log(operator);
 }
 
 
 function numericButtonClick(e) {
-    
+    operatorButtonColorRevert();
     if (equalsButtonFlagSet === true) {
         initialize();
     }
@@ -110,7 +118,6 @@ function numericButtonClick(e) {
         }
         // case where display is showing zero
         if (display.innerHTML.toString() !== '0') {
-            // console.log('here!')
             updateDisplay(display.innerHTML.concat(e.target.innerHTML));
         } 
         // case where button selected is decimal when display is zero
@@ -150,7 +157,7 @@ function updateDisplay(newDisplayValue) {
 
 function operate(firstNum, secondNum, operator) {
     let result;
-
+    operatorButtonColorRevert();
     switch (operator) {
         case '+':
             result = add(firstNum, secondNum);
@@ -166,13 +173,11 @@ function operate(firstNum, secondNum, operator) {
             break;
     
         case null:
-            console.log('The operator is null');
     }
 
 
     
 
-    console.log(result);
     if (result > 99999999){
         result = result.toExponential(4);
     } 
@@ -212,3 +217,8 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
+
+
+// CSS click event handlling 
+
+numericButtons.addEventListener
