@@ -3,6 +3,7 @@ let secondNum = null;
 let operator = null;
 let currentResult = null;
 let hasDecimal = false;
+let equalsButtonFlagSet = false;
 
 
 const display = document.querySelector('#calculator-display');
@@ -21,15 +22,15 @@ operatorButtons.forEach((button) => {
 
 equalsButton.addEventListener('click', equalsButtonClick);
 
-clearButton.addEventListener('click', clearButtonClick);
+clearButton.addEventListener('click', initialize);
 
 function equalsButtonClick() {
-    // Check if operatior has been selected and sets the current result to the display
+// Check if operatior has been selected and sets the current result to the display
     if (operator === null) {
         // Do nothing
         return;
     }
-    // If an operator has been selected check if the second number has been set
+// If an operator has been selected check if the second number has been set
     else if (secondNum === null ){
         // if no previous result run the operator on itself
         if (currentResult === null) {
@@ -46,19 +47,25 @@ function equalsButtonClick() {
     else {
         currentResult = operate(firstNum, secondNum, operator);
         updateDisplay(currentResult);
+        firstNum = currentResult;
         secondNum = null;
         hasDecimal = false;
+        equalsButtonFlagSet = true;
+
+        operator = null;
     }
-    
+        
 }
 
-function clearButtonClick() {
+
+
+function initialize() {
     firstNum = 0;
     secondNum = null;
     operator = null;
     hasDecimal = false;
     currentResult = null;
-
+    equalsButtonFlagSet = false;
     updateDisplay(firstNum);
 
 }
@@ -73,6 +80,7 @@ function operatorButtonClick(e) {
     operator = e.target.innerHTML;
     firstNum = display.innerHTML;
     hasDecimal = false;
+    equalsButtonFlagSet = false;
     
 
     
@@ -81,6 +89,11 @@ function operatorButtonClick(e) {
 
 
 function numericButtonClick(e) {
+    
+    if (equalsButtonFlagSet === true) {
+        initialize();
+    }
+
     if (e.target.innerHTML === '.') {
         if (hasDecimal === true) {
             return;
