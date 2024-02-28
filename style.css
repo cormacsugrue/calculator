@@ -19,7 +19,7 @@ body {
     margin: 0;
     padding: 0;
 
-    border: 1px solid gray;
+    border: 1px solid rgb(20, 20, 20);
     
 }
 
@@ -28,17 +28,25 @@ body {
     width: 280px;
     height: 360px;
     margin: 100px auto;
-    border: 1px solid grey;
+    border: 1px solid rgb(20, 20, 20);
 
 
 }
 
-#clear-btn {    
-    width: 210px;
+#clear-button {    
+
+    background-color: rgb(26, 135, 199);
 }
 
 #zero-btn {
     flex: 2;
+}
+
+.numeric-button {
+    background-color: rgb(138, 203, 136) ;
+}
+
+.operator-button {
 }
 
 #numeric-button-container {
@@ -54,9 +62,15 @@ body {
     
 }
 
+#operator-button-container > button {
+    background-color: rgb(222, 107, 72);
+
+}
+
 
 #calculator-display {
     font-size: 50px;
     text-align: right;
-    border: 1px solid black;
+    border: 1px solid rgb(20, 20, 20);
+    background-color: rgb(255, 235, 231);
 }

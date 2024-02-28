@@ -27,7 +27,7 @@ clearButton.addEventListener('click', initialize);
 function equalsButtonClick() {
 // Check if operatior has been selected and sets the current result to the display
     if (operator === null) {
-        // Do nothing
+        // Do nothing 
         return;
     }
 // If an operator has been selected check if the second number has been set
@@ -169,7 +169,32 @@ function operate(firstNum, secondNum, operator) {
             console.log('The operator is null');
     }
 
-    return Math.round(result * 10000000) / 10000000;
+
+    
+
+    console.log(result);
+    if (result > 99999999){
+        result = result.toExponential(4);
+    } 
+    else if (result > 999999){
+        result = result.toFixed(2);
+    }
+    else if (result > 99999){
+        result = result.toFixed(3);
+    }
+    else if (result > 9999){
+        result = result.toFixed(4);
+    }
+    else if (result > 999){
+        result = result.toFixed(5);
+    }
+    else if (result > 99){
+        result = result.toFixed(6);
+    }
+    // result = Math.round(result * 10000000) / 10000000;
+
+    return result;
+    
 }
 
 function add(a,b) {
