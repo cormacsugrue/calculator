@@ -24,21 +24,32 @@ equalsButton.addEventListener('click', equalsButtonClick);
 clearButton.addEventListener('click', clearButtonClick);
 
 function equalsButtonClick() {
-    // Check if operatior has been selected
+    // Check if operatior has been selected and sets the current result to the display
     if (operator === null) {
-        currentResult = display.innerHTML;
+        // Do nothing
+        return;
     }
-    else if (secondNum === null){
-        currentResult = operate(firstNum, firstNum, operator);
-        secondNum = firstNum;
-        
+    // If an operator has been selected check if the second number has been set
+    else if (secondNum === null ){
+        // if no previous result run the operator on itself
+        if (currentResult === null) {
+            currentResult = operate(firstNum, firstNum, operator);
+        }
+        // If there is a previous result run the operator recursively  
+        else {
+            currentResult = operate(firstNum, currentResult, operator)
+        }
+        updateDisplay(currentResult);
+        return;
     }
+    // If there is second number run operator on the 2 numbers
     else {
         currentResult = operate(firstNum, secondNum, operator);
+        updateDisplay(currentResult);
+        secondNum = null;
+        hasDecimal = false;
     }
-    updateDisplay(currentResult);
-    firstNum = currentResult;
-    hasDecimal = false;
+    
 }
 
 function clearButtonClick() {
@@ -46,6 +57,7 @@ function clearButtonClick() {
     secondNum = null;
     operator = null;
     hasDecimal = false;
+    currentResult = null;
 
     updateDisplay(firstNum);
 
