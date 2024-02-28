@@ -175,28 +175,11 @@ function operate(firstNum, secondNum, operator) {
         case null:
     }
 
-
-    
+    result = parseFloat(result.toFixed(8));
 
     if (result > 99999999){
         result = result.toExponential(4);
     } 
-    else if (result > 999999){
-        result = result.toFixed(2);
-    }
-    else if (result > 99999){
-        result = result.toFixed(3);
-    }
-    else if (result > 9999){
-        result = result.toFixed(4);
-    }
-    else if (result > 999){
-        result = result.toFixed(5);
-    }
-    else if (result > 99){
-        result = result.toFixed(6);
-    }
-    // result = Math.round(result * 10000000) / 10000000;
 
     return result;
     
@@ -217,8 +200,3 @@ function multiply(a, b) {
 function divide(a, b) {
     return a / b;
 }
-
-
-// CSS click event handlling 
-
-numericButtons.addEventListener
