@@ -9,8 +9,9 @@ let equalsButtonFlagSet = false;
 const display = document.querySelector('#calculator-display');
 const numericButtons = document.querySelectorAll('.numeric-button');
 const equalsButton = document.querySelector('#equals-button');
-const operatorButtons = document.querySelectorAll('.operator-button')
+const operatorButtons = document.querySelectorAll('.operator-button');
 const clearButton = document.querySelector('#clear-button');
+const backspaceButton = document.querySelector('#backspace-button');
 
 numericButtons.forEach((button) => {
     button.addEventListener('click', numericButtonClick);
@@ -34,6 +35,17 @@ function operatorButtonColorRevert() {
 equalsButton.addEventListener('click', equalsButtonClick);
 
 clearButton.addEventListener('click', initialize);
+
+backspaceButton.addEventListener('click', backspace);
+
+function backspace() {
+    let currentDisplay = display.innerHTML
+    let newDisplay = currentDisplay.substring(0, (currentDisplay.length -1));
+    if (currentDisplay.length === 1) {
+        newDisplay = 0;
+    } 
+    updateDisplay(newDisplay);
+}
 
 function equalsButtonClick() {
 // Check if operatior has been selected and sets the current result to the display
@@ -68,8 +80,6 @@ function equalsButtonClick() {
         
 }
 
-
-
 function initialize() {
     firstNum = 0;
     secondNum = null;
@@ -94,7 +104,6 @@ function operatorButtonClick(e) {
     hasDecimal = false;
     equalsButtonFlagSet = false;
 }
-
 
 function numericButtonClick(e) {
     operatorButtonColorRevert();
@@ -127,7 +136,6 @@ function numericButtonClick(e) {
         else updateDisplay(e.target.innerHTML);
     }
 
-
     // First numeric button clicked after operator selected
     else if (secondNum === null) {
         if (e.target.innerHTML === ".") {
@@ -153,7 +161,6 @@ function numericButtonClick(e) {
 function updateDisplay(newDisplayValue) {
     display.innerHTML = newDisplayValue;
 }
-
 
 function operate(firstNum, secondNum, operator) {
     let result;

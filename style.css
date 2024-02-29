@@ -20,7 +20,6 @@ body {
     padding: 0;
 
     border: 1px solid rgb(20, 20, 20);
-    
 }
 
 #calculator-container {
@@ -30,15 +29,24 @@ body {
     margin: 100px auto;
     border: 1px solid rgb(20, 20, 20);
 
-
 }
 
-#clear-button {    
+#function-button-container > button {    
     background-color: rgb(26, 135, 199);
+    /* flex: 1; */
+
 }
 
-#clear-button:active {    
+#function-button-container > button:active {    
     background-color: rgb(58, 166, 228);
+}
+
+#clear-button {
+    flex: 2 1 0;
+}
+
+#backspace-button {
+    flex: 1 1 0;
 }
 
 #zero-btn {
@@ -66,7 +74,10 @@ body {
     display: flex;
     flex-wrap: wrap;
     width: 70px;    
-    
+}
+
+#function-button-container {
+    display: flex;
 }
 
 #operator-button-container > button {
