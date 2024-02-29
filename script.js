@@ -13,6 +13,60 @@ const operatorButtons = document.querySelectorAll('.operator-button');
 const clearButton = document.querySelector('#clear-button');
 const backspaceButton = document.querySelector('#backspace-button');
 
+document.addEventListener('keydown', keypressed);
+
+
+// Keyboard functionality for all buttons
+function keypressed(e) {
+    let clickEvent = new CustomEvent('click');;
+    let buttonPressed;
+    if(e.key >= 1 && e.key <= 9) {
+        buttonPressed = document.querySelector(`#number-${e.key}`);
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    
+    else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        switch (e.key) {
+            case '+':
+                buttonPressed = document.querySelector(`#operator-plus`);
+                break;
+            case '-':
+                buttonPressed = document.querySelector(`#operator-minus`);
+                
+                break;
+            case '*':
+                buttonPressed = document.querySelector(`#operator-multiply`);
+
+                break;
+            case '/':
+                buttonPressed = document.querySelector(`#operator-divide`);
+
+                break;
+        }
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    else if (e.key === '=' || e.key === 'Enter') {
+        buttonPressed = document.querySelector('#equals-button');
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    else if (e.key === 'Clear') {
+        buttonPressed = document.querySelector('#clear-button');
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    else if (e.key === 'Backspace') {
+        buttonPressed = document.querySelector('#backspace-button');
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    else if (e.key === '0') {
+        buttonPressed = document.querySelector('#zero-btn');
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+    else if (e.key === '.') {
+        buttonPressed = document.querySelector('#decimal-point');
+        buttonPressed.dispatchEvent(clickEvent);
+    }
+}
+
 numericButtons.forEach((button) => {
     button.addEventListener('click', numericButtonClick);
    
@@ -106,6 +160,7 @@ function operatorButtonClick(e) {
 }
 
 function numericButtonClick(e) {
+
     operatorButtonColorRevert();
     if (equalsButtonFlagSet === true) {
         initialize();
